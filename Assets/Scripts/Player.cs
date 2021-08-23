@@ -70,6 +70,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         coinsHUD.text = $"Coins: {coins}";
 
         if (Input.GetMouseButtonDown(0))
