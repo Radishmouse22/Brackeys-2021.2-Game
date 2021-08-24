@@ -1,26 +1,36 @@
-using System;
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
 public class Player : MonoBehaviour
 {
+    #region Assignables
+
+    // Basic Player attributes
     public static Player instance;
     public Animator anim;
-    public int swordRange = 4;
-    public int swordDamage = 10;
-
-    public TextMeshProUGUI coinsHUD;
-
-    public int coins = 0;
-
     public Camera cam;
 
+    // Sword data
+    public int swordRange = 4;
+    public int swordDamage = 10;
+    private bool isSwingingSword;
+    public float swordCooldownTime = 0.4f;
+
+    // Coin Count
+    public int coins = 0;
+    public TextMeshProUGUI coinsHUD;
+
+    // Player Health
     public int health;
     public int maxHealth = 100;
     public HealthBar healthBar;
 
+    // Player death
     [HideInInspector]
     public bool hasDied = false;
+
+    #endregion
 
     private void OnTriggerEnter(Collider other)
     {
@@ -32,23 +42,35 @@ public class Player : MonoBehaviour
 
     private void SwingSword()
     {
-        anim.SetTrigger("Sword");
-
-        RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, swordRange))
+        if (isSwingingSword == false)
         {
-            if (hit.transform.gameObject.layer == 8)
+            isSwingingSword = true;
+
+            anim.SetTrigger("Sword");
+
+            RaycastHit hit;
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, swordRange))
             {
-                if (hit.transform.gameObject.GetComponent<Enemy>() != null)
+                if (hit.transform.gameObject.layer == 8)
                 {
-                    hit.transform.gameObject.GetComponent<Enemy>().health -= swordDamage;
-                }
-                else
-                {
-                    Debug.LogError("Enemy does not have enemy script applied");
+                    if (hit.transform.gameObject.GetComponent<Enemy>() != null)
+                    {
+                        hit.transform.gameObject.GetComponent<Enemy>().health -= swordDamage;
+                    }
+                    else
+                    {
+                        Debug.LogError("Enemy does not have enemy script applied");
+                    }
                 }
             }
+
+            Invoke("SwordCooldown", swordCooldownTime);
         }
+    }
+
+    private void SwordCooldown()
+    {
+        isSwingingSword = false;
     }
 
     public void TakeDamage(int _damage)

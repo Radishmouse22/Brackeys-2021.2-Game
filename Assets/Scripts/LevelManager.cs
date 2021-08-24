@@ -1,14 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
+
     public GameObject levelEndPlatform;
 
+    public List<GameObject> enemies;
     public GameObject deathScreen;
 
-    public List<GameObject> enemies;
+    public void RespawnPlayer()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
     private void Update()
     {

@@ -59,8 +59,8 @@ public class Enemy : MonoBehaviour
         coinDropAmount++;
         strength++;
 
-        coinDropText.text = $"Coins: {coinDropAmount}";
-        strengthText.text = $"Strength: {strength}";
+        coinDropText.text = coinDropAmount.ToString();
+        strengthText.text = strength.ToString();
 
         yield return new WaitForSeconds(countDownSeconds);
 
@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         MoveAgent();
-        healthText.text = $"Health: {health}";
+        healthText.text = health.ToString();
 
         if (health <= 0)
         {
