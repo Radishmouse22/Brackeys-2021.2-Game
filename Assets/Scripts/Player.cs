@@ -19,6 +19,17 @@ public class Player : MonoBehaviour
     public int maxHealth = 100;
     public HealthBar healthBar;
 
+    [HideInInspector]
+    public bool hasDied = false;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<EndPoint>() != null)
+        {
+            other.GetComponent<EndPoint>().LoadNextLevel();
+        }
+    }
+
     private void SwingSword()
     {
         anim.SetTrigger("Sword");
@@ -70,15 +81,23 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+        if (hasDied != true)
         {
-            Application.Quit();
-        }
-        coinsHUD.text = $"Coins: {coins}";
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+            coinsHUD.text = $"Coins: {coins}";
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            SwingSword();
+            if (Input.GetMouseButtonDown(0))
+            {
+                SwingSword();
+            }
+
+            if (health <= 0)
+            {
+                hasDied = true;
+            }
         }
     }
 

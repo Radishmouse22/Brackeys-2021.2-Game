@@ -32,9 +32,6 @@ public class Enemy : MonoBehaviour
     // Variables for Ranges
     public float willAttackRange = 3f;
 
-    //????
-    private bool initAttacking = false;
-
     #endregion
 
     public void MoveAgent()
@@ -107,6 +104,8 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log($"An enemy was killed, you received {coinDropText} coins");
         Player.instance.coins += coinDropAmount;
+
+        LevelManager.instance.enemies.Remove(gameObject);
 
         Destroy(gameObject);
         Debug.Log("Enemy was destroyed");
