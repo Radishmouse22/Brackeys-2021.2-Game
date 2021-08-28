@@ -6,37 +6,52 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
 
-    public GameObject levelEndPlatform;
-
     public List<GameObject> enemies;
-    public GameObject deathScreen;
 
-    public void RespawnPlayer()
+    public GameObject pauseScreen;
+
+    public bool isPaused = false;
+
+    public void PauseGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        isPaused = true;
+        pauseScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void UnPauseGame()
+    {
+        isPaused = false;
+        pauseScreen.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
     {
-        if (Player.instance.hasDied == true)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            deathScreen.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            if (!isPaused)
+            {
+                PauseGame();
+            }
+            else if (isPaused)
+            {
+                UnPauseGame();
+            }
         }
 
-        if (enemies.Count == 0)
+        if (Player.instance.hasDied == true)
         {
-            levelEndPlatform.SetActive(true);
+            FindObjectOfType<WorldManager>().LoadLevelAtIndex(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
     private void Awake()
     {
         enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
-
-        levelEndPlatform.SetActive(false);
-        deathScreen.SetActive(false);
+        pauseScreen.SetActive(false);
 
         if (instance == null)
         {

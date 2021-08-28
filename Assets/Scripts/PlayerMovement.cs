@@ -14,8 +14,9 @@ public class PlayerMovement : MonoBehaviour {
 
     //Rotation and look
     private float xRotation;
-    private float sensitivity = 50f;
-    private float sensMultiplier = 1f;
+
+    [SerializeField] private float sensitivity = 50f;
+    [SerializeField] private float sensMultiplier = 1f;
     
     //Movement
     public float moveSpeed = 4500;
@@ -56,21 +57,20 @@ public class PlayerMovement : MonoBehaviour {
         Cursor.visible = false;
     }
 
-    
     private void FixedUpdate() {
         Movement();
     }
 
     private void Update() {
+        if (LevelManager.instance.isPaused == false) { Look(); }
         MyInput();
-        Look();
     }
 
     /// <summary>
     /// Find user input. Should put this in its own class but im lazy
     /// </summary>
     private void MyInput() {
-        if (Player.instance.hasDied != true)
+        if (Player.instance.hasDied != true && LevelManager.instance.isPaused == false)
         {
             x = Input.GetAxisRaw("Horizontal");
             y = Input.GetAxisRaw("Vertical");

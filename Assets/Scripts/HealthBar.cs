@@ -4,10 +4,9 @@ using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI healthText;
+    public TextMeshProUGUI healthText;
 
-    private Slider slider;
+    public Slider slider;
 
     public void SetHealth(int _health)
     {
@@ -20,8 +19,6 @@ public class HealthBar : MonoBehaviour
         slider.value = _health;
     }
 
-    #region BoringThings
-
     private void Start()
     {
         slider = gameObject.GetComponent<Slider>();
@@ -29,8 +26,6 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        healthText.text = $"HP: {slider.value}/{slider.maxValue}";
+        healthText.text = $"{slider.value}/{slider.maxValue}";
     }
-
-    #endregion
 }

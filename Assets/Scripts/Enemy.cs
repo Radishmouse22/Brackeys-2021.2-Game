@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     public int coinDropAmount = 1;
     public int strength = 2;
 
-    public float countDownSeconds = 5f;
+    private Vector3 lastPosition;
 
     // Variables for Ranges
     public float willAttackRange = 3f;
@@ -54,17 +54,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private IEnumerator IncreaseStats()
+    public void IncreaseStats()
     {
         coinDropAmount++;
         strength++;
 
         coinDropText.text = coinDropAmount.ToString();
         strengthText.text = strength.ToString();
-
-        yield return new WaitForSeconds(countDownSeconds);
-
-        StartCoroutine(IncreaseStats());
     }
 
     private IEnumerator AttackPlayer()
@@ -115,12 +111,21 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(IncreaseStats());
+        IncreaseStats();
         agent = gameObject.GetComponent<NavMeshAgent>();
         health = maxHealth;
     }
     private void Update()
     {
+        if (transform.position != lastPosition)
+        {
+            anim.SetBool("IsRunning", true);
+        }
+        else
+        {
+            anim.SetBool("IsRunning", false);
+        }
+
         MoveAgent();
         healthText.text = health.ToString();
 
@@ -128,6 +133,8 @@ public class Enemy : MonoBehaviour
         {
             Die();
         }
+
+        lastPosition = transform.position;
     }
 
     void LateUpdate()

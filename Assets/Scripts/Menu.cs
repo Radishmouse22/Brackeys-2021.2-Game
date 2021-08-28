@@ -9,7 +9,6 @@ public class Menu : MonoBehaviour
     public GameObject mainFirstButton, optionsFirstButton, optionsClosedButton;
 
     public GameObject bit;
-    public float amountToRotatePerFrame;
 
     private void Update()
     {
@@ -27,10 +26,15 @@ public class Menu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(mainFirstButton);
     }
-
+    
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        FindObjectOfType<WorldManager>().LoadLevelAtIndex(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     public void OpenOptions()

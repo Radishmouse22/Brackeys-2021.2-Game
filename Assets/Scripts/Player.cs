@@ -12,8 +12,7 @@ public class Player : MonoBehaviour
     public Camera cam;
 
     // Sword data
-    public int swordRange = 4;
-    public int swordDamage = 10;
+    public int swordRange = 4, swordDamage = 10;
     private bool isSwingingSword;
     public float swordCooldownTime = 0.4f;
 
@@ -22,13 +21,16 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI coinsHUD;
 
     // Player Health
-    public int health;
-    public int maxHealth = 100;
+    public int health, maxHealth = 100;
     public HealthBar healthBar;
 
     // Player death
     [HideInInspector]
     public bool hasDied = false;
+
+    // Enemy strength increase timer
+    public int countdown = 20;
+    public TextMeshProUGUI countdownDisplay;
 
     #endregion
 
@@ -36,8 +38,33 @@ public class Player : MonoBehaviour
     {
         if (other.GetComponent<EndPoint>() != null)
         {
-            other.GetComponent<EndPoint>().LoadNextLevel();
+            other.GetComponent<EndPoint>().LoadLevel();
         }
+    }
+
+    public IEnumerator RestartCountdown()
+    {
+        countdown = 20;
+
+        foreach (GameObject enemy in LevelManager.instance.enemies)
+        {
+            enemy.GetComponent<Enemy>().IncreaseStats();
+        }
+
+        yield return new WaitForSeconds(20f);
+        StartCoroutine(RestartCountdown());
+    }
+
+    public IEnumerator UpdateCountdown(float delay = 0.0f)
+    {
+        if (delay != 0)
+            yield return new WaitForSeconds(delay);
+
+        countdown--;
+        countdownDisplay.text = countdown.ToString();
+
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(UpdateCountdown());
     }
 
     private void SwingSword()
@@ -86,6 +113,9 @@ public class Player : MonoBehaviour
     {
         health = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        StartCoroutine(RestartCountdown());
+        StartCoroutine(UpdateCountdown(1f));
     }
 
     private void Awake()
@@ -105,11 +135,7 @@ public class Player : MonoBehaviour
     {
         if (hasDied != true)
         {
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                Application.Quit();
-            }
-            coinsHUD.text = $"Coins: {coins}";
+            coinsHUD.text = coins.ToString();
 
             if (Input.GetMouseButtonDown(0))
             {

@@ -336,8 +336,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169220439825988716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.10127, y: 0.10127, z: 0.10127}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0046272}
+  m_LocalScale: {x: 0.056979567, y: 0.056979567, z: 0.056979567}
   m_Children:
   - {fileID: 5597158846244375039}
   m_Father: {fileID: 1169220441207277650}
@@ -345,8 +345,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.25}
-  m_SizeDelta: {x: 23.98, y: 1.15}
+  m_AnchoredPosition: {x: 0.646, y: 1.317}
+  m_SizeDelta: {x: 6.6703, y: 1.1344}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1169220439825988690
 MeshRenderer:
@@ -508,8 +508,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169220440080234150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.10127, y: 0.10127, z: 0.10127}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0046272}
+  m_LocalScale: {x: 0.056979567, y: 0.056979567, z: 0.056979567}
   m_Children:
   - {fileID: 6897977955395896250}
   m_Father: {fileID: 1169220441207277650}
@@ -517,8 +517,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.75}
-  m_SizeDelta: {x: 23.98, y: 1.15}
+  m_AnchoredPosition: {x: 0.14861912, y: 1.3220999}
+  m_SizeDelta: {x: 6.6703, y: 1.1344}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1169220440080234148
 MeshRenderer:
@@ -663,7 +663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1169220440534848237}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Sword Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 1169220441344596191}
   - component: {fileID: 1169220441344596189}
   - component: {fileID: 1169220441344596190}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,8 +826,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1169220441381953210}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.10127, y: 0.10127, z: 0.10127}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0046272}
+  m_LocalScale: {x: 0.056979567, y: 0.056979567, z: 0.056979567}
   m_Children:
   - {fileID: 8256430989601560660}
   m_Father: {fileID: 1169220441207277650}
@@ -835,8 +835,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.25}
-  m_SizeDelta: {x: 23.98, y: 1.15}
+  m_AnchoredPosition: {x: -0.3994009, y: 1.3192999}
+  m_SizeDelta: {x: 6.6703, y: 1.1344}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1169220441381953208
 MeshRenderer:
@@ -1837,9 +1837,7 @@ MonoBehaviour:
   timeBetweenAttacks: 3
   coinDropAmount: 1
   strength: 2
-  countDownSeconds: 10
   willAttackRange: 3
-  isIdle: 1
 --- !u!136 &4448550012802008350
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2068,7 +2066,7 @@ GameObject:
   - component: {fileID: 5597158846244375039}
   - component: {fileID: 8791802476779783770}
   - component: {fileID: 6766155466734776976}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mini-Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2083,7 +2081,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5108994012445184837}
   m_LocalRotation: {x: -0.2706, y: -0.6532819, z: -0.6532815, w: -0.2705952}
-  m_LocalPosition: {x: -13.5, y: 2.3, z: -0.16754985}
+  m_LocalPosition: {x: -5.22, y: 2.37, z: -0.17}
   m_LocalScale: {x: 230, y: 230, z: 230}
   m_Children: []
   m_Father: {fileID: 1169220439825988689}
@@ -2553,7 +2551,7 @@ GameObject:
   - component: {fileID: 6897977955395896250}
   - component: {fileID: 7499990854377278495}
   - component: {fileID: 5760568724495464661}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2568,7 +2566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6120773200145635584}
   m_LocalRotation: {x: 0.70710576, y: -0, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: -13.89, y: 1.46, z: -0.02}
+  m_LocalPosition: {x: -5.609994, y: 1.5299977, z: -0.022448458}
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_Children: []
   m_Father: {fileID: 1169220440080234149}
@@ -3044,7 +3042,7 @@ GameObject:
   - component: {fileID: 8256430989601560660}
   - component: {fileID: 4988694987013445617}
   - component: {fileID: 7124572432566166331}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3059,7 +3057,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8781857168640574190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.89, y: 1.5, z: 0}
+  m_LocalPosition: {x: -5.609994, y: 1.5699977, z: -0.0024484578}
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_Children: []
   m_Father: {fileID: 1169220441381953209}
