@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
 
     public bool isPaused = false;
 
+    private bool playerHasDied = false;
+
     public void PauseGame()
     {
         isPaused = true;
@@ -44,7 +46,14 @@ public class LevelManager : MonoBehaviour
 
         if (Player.instance.hasDied == true)
         {
+            if (playerHasDied == false)
+            {
+                FindObjectOfType<AudioManager>().Play("Die");
+            }
+
             FindObjectOfType<WorldManager>().LoadLevelAtIndex(SceneManager.GetActiveScene().buildIndex);
+
+            playerHasDied = true;
         }
     }
 

@@ -27,6 +27,12 @@ public class WorldManager : MonoBehaviour
     {
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
 
+        int currentCoins = PlayerPrefs.GetInt("Coins");
+        if (FindObjectOfType<Player>() != null)
+        {
+            PlayerPrefs.SetInt("Coins", currentCoins += Player.instance.coins);
+        }
+
         StartCoroutine(LoadLevel(nextScene));
     }
 

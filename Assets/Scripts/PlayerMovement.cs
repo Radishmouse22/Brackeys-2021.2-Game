@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     
     void Start() {
+        sensitivity = PlayerPrefs.GetFloat("sens", 50f);
         playerScale =  transform.localScale;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -134,8 +135,8 @@ public class PlayerMovement : MonoBehaviour {
         
         // Movement in air
         if (!grounded) {
-            multiplier = 0.5f;
-            multiplierV = 0.5f;
+            multiplier = 0.2f;
+            multiplierV = 0.2f;
         }
         
         // Movement while sliding

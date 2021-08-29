@@ -101,6 +101,8 @@ public class Enemy : MonoBehaviour
         Debug.Log($"An enemy was killed, you received {coinDropText} coins");
         Player.instance.coins += coinDropAmount;
 
+        FindObjectOfType<AudioManager>().Play("Enemy Die");
+
         LevelManager.instance.enemies.Remove(gameObject);
 
         Destroy(gameObject);
